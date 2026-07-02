@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>스테이지 1 - 시약소의 비밀 입구</title>
+    <style>
+        body { background:#12161a; color:#e0d8c3; font-family:sans-serif; margin:0; padding:0; line-height: 1.6; }
+        nav { display:flex; justify-content:space-between; padding:20px 40px; background:rgba(0,0,0,0.5); border-bottom:1px solid #c5a059; }
+        .container { max-width:1000px; margin:40px auto; padding:0 20px; }
+        h1 { color:#c5a059; }
+        h2 { color:#fff; border-bottom: 1px solid rgba(197,160,89,0.3); padding-bottom: 10px; margin-top: 40px;}
+        
+        /* 💡 이미지가 하나만 들어가므로 중앙에 꽉 차고 보기 좋게 정렬했습니다 */
+        .gameplay-images { display: flex; justify-content: center; margin: 30px 0; }
+        .gameplay-images img { width: 100%; max-width: 800px; height: auto; border: 1px solid #c5a059; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        
+        .play-method { background:rgba(25,30,36,0.9); padding:25px; border-radius:6px; border-left:4px solid #c5a059; margin-top: 30px;}
+        .story-extension { background: rgba(255,255,255,0.03); padding: 25px; border-radius: 6px; margin-top: 30px; border: 1px dashed rgba(197,160,89,0.4); }
+        .back-btn { display:inline-block; margin-top:20px; color:#c5a059; text-decoration:none; font-weight:bold; }
+        
+        /* 대학교 로고 푸터 영역 */
+        .university-footer { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 60px; padding-top: 30px; border-top: 1px solid #222; }
+        .logo-placeholder { background: rgba(255,255,255,0.1); color: #fff; padding: 15px 25px; font-weight: bold; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); font-size: 0.9rem; text-align: center; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" style="color:#c5a059; text-decoration:none; font-weight:bold; font-size:1.2rem;">◀ 메인으로 돌아가기</a>
+    </nav>
+    <div class="container">
+        <h1>STAGE 1: 시약소의 비밀 입구</h1>
+        <p>고풍스러운 시약소 사무실 내부에서 조사를 시작합니다. 숨겨진 공문서와 단서들을 종합하여 지하 수로로 진입할 수 있는 비밀 통로를 열어야 합니다.</p>
+        
+        <h2>VR 인게임 스크린샷</h2>
+        <div class="gameplay-images">
+            <!-- 📷 깔끔하게 한 장만 크게 나오도록 정돈했습니다 -->
+            <img src="office.jpg" alt="스테이지1 플레이 화면 - 사무실 책상">
+        </div>
+
+        <div class="play-method">
+            <h2>플레이 방식 설명</h2>
+            <ul>
+                <li><strong>컨트롤러 상호작용:</strong> 양손 컨트롤러를 사용하여 서랍을 열고, 탁자 위의 단서나 공문서를 집어 올려 읽을 수 있습니다.</li>
+                <li><strong>도구 활용:</strong> 획득한 황동 열쇠를 열쇠구멍에 넣고 직접 돌려 잠금을 해제합니다.</li>
+                <li><strong>퍼즐 해결:</strong> 벽면에 부착된 거대한 황동 문양 구조물을 손으로 직접 돌리고 조작하여 올바른 배열을 맞춰 지하 문을 개방하십시오.</li>
+            </ul>
+        </div>
+
+        <!-- 게임 상세 설명 영역 -->
+        <div class="story-extension">
+            <h2>추가 게임 안내 & 힌트</h2>
+            <p><strong>시약소의 역사적 배경:</strong> 본 스테이지의 배경이 되는 타이중 시약소 사무실은 레트로 미래지향적인 스팀펑크 오브젝트들로 가득 차 있습니다. 단순히 방을 탈출하는 것을 넘어, 당시 수리조합 요원들이 남긴 일지와 설계 도면을 읽으며 단수 사태의 근본적인 원인에 한 걸음 다가서게 됩니다.</p>
+            <p style="color: #c5a059; font-weight: bold;">💡 최초 진입 가이드: 책상 위 손전등을 쥔 후 방 안의 어두운 구석구석을 먼저 비추어 보십시오. 조명이 닿지 않는 곳에 조합원의 표식이 숨겨져 있습니다.</p>
+        </div>
+
+        <a href="index.html" class="back-btn">홈페이지 메인으로</a>
+
+        <!-- 대학교 로고 UI -->
+        <div class="university-footer">
+            <div class="logo-placeholder">삼육대학교<br><span style="font-size:0.7rem; color:#aaa;">SAHMYOOK UNIVERSITY</span></div>
+            <div class="logo-placeholder">국립 타이중과학기술대학교<br><span style="font-size:0.7rem; color:#aaa;">國立臺中科技大學</span></div>
+        </div>
+    </div>
+</body>
+</html>

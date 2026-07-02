@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수맥 추적 일지 - 메인</title>
+    <style>
+        :root {
+            --gold: #c5a059;
+            --bg-dark: #12161a;
+            --panel-bg: rgba(25, 30, 36, 0.9);
+            --text-light: #e0d8c3;
+        }
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        /* 상단 네비게이션 */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(0,0,0,0.7);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+        }
+        .nav-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        .login-ui input {
+            background: #222;
+            border: 1px solid var(--gold);
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+        .login-ui button {
+            background: var(--gold);
+            border: none;
+            padding: 5px 15px;
+            color: #12161a;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            display: flex;
+            max-width: 1200px;
+            margin: 140px auto 40px;
+            padding: 20px;
+            gap: 40px;
+            align-items: center;
+        }
+        .poster-area {
+            flex: 1;
+            text-align: center;
+        }
+        .poster-img {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 50px rgba(197,160,89,0.5);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .poster-img:hover {
+            transform: scale(1.03);
+        }
+        .desc-area {
+            flex: 1.2;
+        }
+        .desc-area h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-top: 0;
+            text-shadow: 0 0 15px rgba(197,160,89,0.3);
+        }
+
+        /* 스테이지 선택 섹션 */
+        .stages-section {
+            max-width: 1200px;
+            margin: 60px auto 20px;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .stage-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .stage-card {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .stage-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(197,160,89,0.2);
+        }
+        .stage-card p { margin: 0; font-weight: bold; font-size: 0.9rem; color: var(--gold); letter-spacing: 1px;}
+        .stage-card h3 { color: #fff; font-size: 1.5rem; margin: 12px 0; }
+        .stage-card span { color: #888; font-size: 0.95rem; display: block; margin-top: 10px;}
+
+        /* ⭐ 추가된 게임 종합 안내 섹션 ⭐ */
+        .game-about-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+        .about-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(197, 160, 89, 0.4);
+            border-radius: 10px;
+            padding: 40px;
+        }
+        .about-box h2 {
+            color: var(--gold);
+            margin-top: 0;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(197,160,89,0.2);
+            padding-bottom: 15px;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 25px;
+        }
+        .about-item h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+        }
+        .about-item p {
+            color: #aaa;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ⭐ 추가된 대대학교 로고 푸터 영역 ⭐ */
+        .university-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 80px auto 40px;
+            padding-top: 35px;
+            max-width: 1200px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo-placeholder {
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            padding: 15px 30px;
+            font-weight: bold;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 상단 바 -->
+    <nav>
+        <a href="index.html" class="nav-title">水脈追蹤日誌 : 수맥 추적 일지</a>
+        <div class="login-ui">
+            <input type="text" placeholder="아이디">
+            <input type="password" placeholder="비밀번호">
+            <button onclick="alert('로그인 기능은 준비 중입니다.')">로그인</button>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 (메인 포스터) -->
+    <section class="hero">
+        <div class="poster-area">
+            <img src="대만포스터.png" alt="수맥 추적 일지 메인 포스터" class="poster-img">
+        </div>
+        <div class="desc-area">
+            <h1>수맥 추적 일지</h1>
+            <p style="font-size: 1.3rem; color: #aaa; letter-spacing: 1px;">도시의 명운을 건 VR 지하 수로 탐험</p>
+            <hr style="border:0; height:1px; background:linear-gradient(to right, transparent, var(--gold), transparent); margin:25px 0;">
+            <p>당신은 일제강점기 수리조합의 기술 요원이 되어, 갑작스러운 도시 단수 사태를 해결하기 위해 타이중 시약소 지하 수로를 탐험해야 합니다.</p>
+            <p>제한 시간 안에 고장을 수리하고 도시에 다시 물을 공급하는 영웅이 되어보세요. 스팀펑크 감성의 메커니즘과 압도적인 VR 몰입감이 당신을 기다립니다.</p>
+        </div>
+    </section>
+
+    <!-- 스테이지 카드 섹션 -->
+    <section class="stages-section">
+        <h2 class="section-title">미션 스테이지 선택</h2>
+        <div class="stages-grid">
+            <a href="stage1.html" class="stage-link">
+                <div class="stage-card">
+                    <p>STAGE 01</p>
+                    <h3>시약소의 비밀 입구</h3>
+                    <span>사무실에서 단서를 찾아 비밀 통로를 개방하세요.</span>
+                </div>
+            </a>
+            <a href="stage2.html" class="stage-link">
+                <div class="stage-card">
+                    <p>STAGE 02</p>
+                    <h3>지하 수로 탐험</h3>
+                    <span>미로 같은 수로에서 배관을 수리하고 장애물을 극복하세요.</span>
+                </div>
+            </a>
+            <a href="stage3.html" class="stage-link">
+                <div class="stage-card">
+                    <p>STAGE 03</p>
+                    <h3>압력 밸브 재가동</h3>
+                    <span>최종 제어실에서 밸브를 조작하여 수압을 안정화하세요.</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ⭐ 추가된 게임 종합 안내 세부 내용 ⭐ -->
+    <section class="game-about-section">
+        <div class="about-box">
+            <h2>ABOUT THE GAME</h2>
+            <div class="about-grid">
+                <div class="about-item">
+                    <h4>시공간을 초월한 몰입형 VR 환경</h4>
+                    <p>본 게임은 1900년대 초반의 대만 타이중 시약소의 정교한 아키텍처와 지하 수로 구조를 가상 현실 공간에 그대로 재현했습니다. 고증에 기반한 텍스처와 오브젝트 디자인을 통해 플레이어에게 실제 그 시대로 시간 여행을 떠난 듯한 완벽한 가상 시각을 선사합니다.</p>
+                </div>
+                <div class="about-item">
+                    <h4>체감형 물리 퍼즐과 메커니즘</h4>
+                    <p>VR 컨트롤러의 트리거와 그립 기능을 극한으로 활용하여 밸브를 회전시키고, 직접 도구를 집어 배관을 수리하는 등의 상호작용을 제공합니다. 가상 세계에서의 행동이 햅틱 진동 피드백을 통해 양손으로 고스란히 전달되어 한층 더 리얼한 플레이를 경험할 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⭐ 추가된 대학교 로고 푸터 영역 ⭐ -->
+    <footer class="university-footer">
+        <div class="logo-placeholder">삼육대학교<br><span style="font-size:0.75rem; color:#aaa;">SAHMYOOK UNIVERSITY</span></div>
+        <div class="logo-placeholder">국립 타이중과학기술대학교<br><span style="font-size:0.75rem; color:#aaa;">國立臺中科技大學</span></div>
+    </footer>
+
+</body>
+</html>
